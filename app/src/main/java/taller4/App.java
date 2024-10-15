@@ -9,6 +9,13 @@ public class App {
     
 
     public static void main(String[] args) {
+
+        final byte minimo = 20, máximo= 30;
+        double cantidad = Math.random() * (máximo - minimo) + minimo;
+       
+       for (int i = 0; i < cantidad; i++) {      
+        Raiz_numeros ();
+       }
         
         //Coloque los llamados a cada función de acuerdo con cada enunciado
         //codifique el control de errores para el main
@@ -25,6 +32,54 @@ public class App {
      * hasta ese número separados por comas en grupos de hasta 8 números.
      * 
     */
+public static String Escribir_asc(int nro_1, int nro_2, int nro_3){
+    try {
+
+       String mensaje = "";
+       if(nro_1 == nro_2 || nro_1 == nro_3 || nro_2 == nro_3 ){
+          return "Error: La función no considera números iguales";
+       }
+
+       else if(nro_1 > nro_2 && nro_2 > nro_3){
+          mensaje = nro_1 + " - " + nro_2 + " - " + nro_3;
+          return mensaje;
+       }
+
+       else if(nro_1 > nro_3 && nro_3 > nro_2){
+          mensaje = nro_1 + " - " + nro_3 + " - " + nro_2;
+          return mensaje;
+       }
+
+       else if(nro_2 > nro_1 && nro_1 > nro_3){
+          mensaje = nro_2 + " - " + nro_1 + " - " + nro_3;
+          return mensaje;
+       }
+
+       else if(nro_2 > nro_3 && nro_3 > nro_1){
+          mensaje = nro_2 + " - " + nro_3 + " - " + nro_1;
+          return mensaje;
+       }
+
+       else if(nro_3 > nro_2 && nro_2 > nro_1){
+          mensaje = nro_3 + " - " + nro_2 + " - " + nro_1;
+          return mensaje;
+       }
+
+       else if(nro_3 > nro_1 && nro_1 > nro_2){
+          mensaje = nro_3 + " - " + nro_1 + " - " + nro_2;
+          return mensaje;
+       }
+
+       else{
+          return "Ocurrió un error inesperado";
+       }
+
+    } 
+    
+    catch (Exception e) {
+       return "Ocurrió un error inesperado";
+    }
+ }
 
     /* 2. 	Escriba una función que reciba un entero N mayor de 2  y retorne un string cono esos N términos de la 
     serie de Fibonacci (La sucesión de Fibonacci se trata de una serie infinita de números naturales que empieza con un 0 y un 1 
@@ -33,7 +88,34 @@ public class App {
      * 
      * 
     */
+public static byte Obtener_cifras (int nro_){
+   
+    try {
 
+         byte cifras = 0;
+          if (nro_ < 0 || nro_ > 50000){
+            return 0;
+         }
+              if (nro_ < 10) {
+            cifras = 1;
+         }
+              else if (nro_ < 100){
+            cifras = 2;
+         } 
+              else if (nro_ < 1000){
+            cifras = 3;
+         } 
+              else if (nro_ < 10000){
+            cifras = 4;
+         } 
+              else if (nro_ < 100000){
+            cifras = 5;
+         }
+    } 
+    catch (Exception e) {
+        return -1;
+    }
+ }
     /* 
      * 3.	Diseñar y desarrollar una función que NO reciba datos de entrada, genere aleatoriamente un número entre 2 y 355, 
        le calcule su raíz cuadrada y retorne este valor. Para calcular las raíces usar la función Sqrt de la biblioteca Math.
@@ -42,9 +124,22 @@ public class App {
        de veces que va a llamar a la función y en un ciclo, mostrar los resultados.
 
     */
+public static float Raiz_numeros (){
 
+    try {
+        
+        final int numero_minimo = 2, numero_maximo = 355, aleatorio_1 = 20,
+        aleatorio_2= 30;
+        
+        int n = (int) (Math.random() * (numero_maximo - numero_minimo) + numero_minimo);
+            double raiz = Math.sqrt(n);
 
+            System.out.println(String.format("Numero: %s Raiz: %.2f", n, raiz));
 
+    } catch (Exception e) {
+        return -1;
+    }
+   }
 
     /*4.	Diseñar y desarrollar una función que reciba un valor inicial y un valor final, para generar 900 números aleatorios 
         en este rango y retorne un texto que diga cuántos números pares fueron generados. Controle que el nro inicial sea menor que 
@@ -52,18 +147,64 @@ public class App {
 
         Llame la función desde el main e imprimir el resultado arrojado.
     */
-
-
+public static int numeros_aleatorios(int maxi_, int mini_){
+        
+    try {
+        
+        final int lim_nro = 900, divisor = 2;
+    
+        int numero = 0, pares = 0, rango = 0;
+        
+        if(maxi_ > mini_){
+            
+            for (int i = 1; i <= lim_nro; i ++){
+                
+                numero = (int)(Math.random()*(maxi_ - mini_) + mini_);
+                rango = numero % divisor;
+                
+                System.out.print(numero + " ");
+                
+                if(rango == 0)
+                    pares ++;
+            }
+            
+            System.out.println("el total de números pares fue: " + pares );
+        }
+        
+        else{
+            System.out.println("error, números inválidos");
+            return 0;
+        }
+        
+        return pares;
+    } 
+    catch(Exception e) {
+        System.out.println("ha ocurrido un error inesperado");
+        return -1;
+    }
+  }
 
 
     /* 5.	Diseñar y desarrollar una función que calcule una cantidad de números aleatorios que viene como parámetro de entrada 
         y los sume.  La función deberá retornar el total de la suma. Usted defina los rangos que va a usar en el cálculo.
 
         Llame la función desde el main e imprimir el resultado arrojado.
-
-      
     */
+public static int Suma_aleatorios (int cantidad){
 
+    try {
+        final int max_ = 100, min_ = 0;
+            int rango = 0, suma = 0;
+            
+            for (int i = 1; i <= cantidad; i++){
+                rango = (int)(Math.random()*(max_-min_))+ min_;
+                suma += rango;
+            }
+            return suma;
+    } catch (Exception e) {
+        return -1;
+    }
+  }
 
     /* 6.	Se requiere una función para simular el sorteo de una lotería, de acuerdo con las siguientes condiciones:
 
@@ -104,5 +245,7 @@ public class App {
      * 
      * 
     */
+
+    
 
 }
